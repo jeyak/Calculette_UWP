@@ -1,0 +1,1 @@
+C:\Users\rjeya\Documents\Visual Studio 2015\Projects\Calculette\Calculette\Calculette.csproj;x64
