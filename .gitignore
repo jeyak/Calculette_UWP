@@ -3,3 +3,28 @@
 ################################################################################
 
 /.vs/Calculette/v14
+/Calculette/bin
+/Calculette/obj
+
+# Compiled source #
+
+###################
+*.dll
+*.winmd
+*.rc
+*.g.cs
+*.ilexe
+*.ilpdb
+*.exe
+*.ildll
+
+# OS generated files #
+
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db

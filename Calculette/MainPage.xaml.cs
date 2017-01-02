@@ -5,6 +5,9 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Foundation.Metadata;
+using Windows.UI;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -31,6 +34,34 @@ namespace Calculette
         public MainPage()
         {
             this.InitializeComponent();
+            //PC customization
+            if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.ApplicationView"))
+            {
+                var titleBar = ApplicationView.GetForCurrentView().TitleBar;
+                if (titleBar != null)
+                {
+                    titleBar.ButtonBackgroundColor = GetSolidColorBrush("#CC133445").Color;
+                    titleBar.ButtonHoverBackgroundColor = GetSolidColorBrush("#CC135465").Color;
+                    titleBar.ButtonPressedBackgroundColor = GetSolidColorBrush("#CC131425").Color;
+                    titleBar.ButtonForegroundColor = Colors.White;
+                    titleBar.BackgroundColor = GetSolidColorBrush("#CC133445").Color;
+                    titleBar.ForegroundColor = Colors.White;
+                    titleBar.InactiveBackgroundColor = GetSolidColorBrush("#CC131425").Color;
+                }
+            }
+
+            //Mobile customization
+            if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+            {
+
+                var statusBar = StatusBar.GetForCurrentView();
+                if (statusBar != null)
+                {
+                    statusBar.BackgroundOpacity = 1;
+                    statusBar.BackgroundColor = GetSolidColorBrush("#CC133445").Color;
+                    statusBar.ForegroundColor = Colors.White;
+                }
+            }
         }
 
         // Method
@@ -147,6 +178,20 @@ namespace Calculette
             this.isOpExecuted = true;
         }
 
+        // HEX to Color translator
+        public SolidColorBrush GetSolidColorBrush(string hex)
+        {
+            hex = hex.Replace("#", string.Empty);
+            byte a = (byte)(Convert.ToUInt32(hex.Substring(0, 2), 16));
+            byte r = (byte)(Convert.ToUInt32(hex.Substring(2, 2), 16));
+            byte g = (byte)(Convert.ToUInt32(hex.Substring(4, 2), 16));
+            byte b = (byte)(Convert.ToUInt32(hex.Substring(6, 2), 16));
+            SolidColorBrush myBrush = new SolidColorBrush(Color.FromArgb(a, r, g, b));
+            return myBrush;
+        }
+
+
+        // Event
         private void btn0_Click(object sender, RoutedEventArgs e)
         {
             this.printInScreenLabel(Convert.ToInt32(0));
