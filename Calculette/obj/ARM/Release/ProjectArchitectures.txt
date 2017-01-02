@@ -1,1 +1,1 @@
-C:\Users\rjeya\Documents\Visual Studio 2015\Projects\Calculette\Calculette\Calculette.csproj;arm
+C:\Users\jrajaratnam\Source\Repos\Calculette_UWP\Calculette\Calculette.csproj;arm
